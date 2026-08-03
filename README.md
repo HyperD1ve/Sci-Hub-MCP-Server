@@ -19,7 +19,7 @@ The Sci-Hub MCP Server provides a bridge between AI assistants and Sci-Hub's rep
 ### Prerequisites
 
 - Python 3.10+
-- FastMCP library
+- mcp (Model Context Protocol SDK) >= 2.0.0
 
 ### Installation
 
@@ -124,13 +124,13 @@ Can you show me the metadata for the paper with DOI 10.1038/nature09492?
 
 ## 📁 Project Structure
 
-- `sci_hub_server.py`: The main MCP server implementation using FastMCP
+- `sci_hub_server.py`: The main MCP server implementation using `mcp.server.mcpserver.MCPServer`
 - `sci_hub_search.py`: Contains the logic for searching Sci-Hub and retrieving paper information
 
 ## 🔧 Dependencies
 
 - Python 3.10+
-- FastMCP
+- mcp (Model Context Protocol SDK)
 - requests
 - bs4
 - scihub

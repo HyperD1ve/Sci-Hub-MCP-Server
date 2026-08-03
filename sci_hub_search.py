@@ -75,9 +75,11 @@ def search_papers_by_keyword(keyword, num_results=10):
 
 def download_paper(pdf_url, output_path):
     """下载论文 PDF"""
-    sh = SciHub()
+    sh = create_scihub_instance()
     try:
-        sh.download(pdf_url, output_path)
+        result = sh.fetch(pdf_url)
+        with open(output_path, 'wb') as f:
+            f.write(result['pdf'])
         return True
     except Exception as e:
         print(f"下载出错: {str(e)}")
