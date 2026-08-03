@@ -156,7 +156,25 @@ Can you show me the metadata for the paper with DOI 10.1038/nature09492?
 - mcp (Model Context Protocol SDK)
 - requests
 - bs4
-- scihub
+
+> The previously used `scihub` pip package has been dropped: it pins dead
+> mirrors (sci-hub.tw / sci-hub.is). Mirror handling now lives in
+> `sci_hub_search.py` directly.
+
+## 🌐 Mirrors
+
+Default mirrors (as of 2026-08): `sci-hub.ru`, `sci-hub.st`, `sci-hub.se`.
+If they rotate, override without touching code via a comma-separated
+environment variable:
+
+```bash
+export SCIHUB_MIRRORS="https://sci-hub.ru,https://sci-hub.st"
+```
+
+PDF links are resolved from the article page's `citation_pdf_url` meta tag,
+with legacy `<embed>`/`<iframe>`/download-button layouts as fallbacks. If you
+edit the mirror list while the MCP server is running, restart it to pick up
+the change.
 
 ## 🤝 Contributing
 
