@@ -52,9 +52,11 @@ Add this configuration to your `claude_desktop_config.json`:
 {
   "mcpServers": {
     "scihub": {
-      "command": "python",
-      "args": ["-m", "sci_hub_server.py"]
-      }
+      "command": "/Users/YOUR/PATH/Sci-Hub-MCP-Server/.venv/bin/python",
+      "args": [
+        "/Users/YOUR/PATH/Sci-Hub-MCP-Server/sci_hub_server.py"
+      ]
+    }
   }
 }
 ```
@@ -75,6 +77,27 @@ Add this configuration to your `claude_desktop_config.json`:
     }
   }
 }
+```
+
+## Usage with Claude Code
+
+You can register the server with the [Claude Code](https://docs.claude.com/en/docs/claude-code) CLI using `claude mcp add`. Point it at the Python interpreter inside this project's virtual environment so the `mcp`, `requests`, `bs4`, and `scihub` dependencies are available:
+
+```bash
+claude mcp add scihub -- /absolute/path/to/Sci-Hub-MCP-Server/.venv/bin/python /absolute/path/to/Sci-Hub-MCP-Server/sci_hub_server.py
+```
+
+This registers the server at `local` scope (available only to you, in the current project). Use `-s user` to make it available across all your projects, or `-s project` to share it with collaborators via a `.mcp.json` file checked into the repo:
+
+```bash
+claude mcp add scihub -s user -- /absolute/path/to/Sci-Hub-MCP-Server/.venv/bin/python /absolute/path/to/Sci-Hub-MCP-Server/sci_hub_server.py
+```
+
+Verify it's registered and reachable:
+
+```bash
+claude mcp list
+claude mcp get scihub
 ```
 
 ## 🛠 MCP Tools
